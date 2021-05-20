@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.VO.EmployeeVo;
+import com.example.demo.exceptions.CustomRequestException;
 import com.example.demo.service.EmployeeService;
 
 
@@ -45,9 +46,9 @@ public class EmployeeController {
 		return employeeService.deleteEmployee(id);
 	}
 
-	@GetMapping
+	@GetMapping("")
 	public List<EmployeeVo> displayEmployee() {
-
-		return employeeService.getAllEmployees();
+		
+        return employeeService.getAllEmployees();
 	}
 }

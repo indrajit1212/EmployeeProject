@@ -21,8 +21,9 @@ private EmployeeMapperDao employeeMapperDao;
 @Override
 public EmployeeVo insertEmployee( EmployeeVo employeeVo) {
 
-
+	System.out.println(employeeVo);
 	final Employee employee = employeeMapperDao.toEntity(employeeVo);
+	System.out.println(employee);
     final Employee savedEmployee = employeeRepository.save(employee);
 
 	//Department department=employee.getDepartment();	

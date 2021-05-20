@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Dao.EmployeeDao;
 import com.example.demo.VO.EmployeeVo;
 import com.example.demo.aspect.LogExecutionTime;
+import com.example.demo.exceptions.CustomRequestException;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
@@ -24,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
    @Override
 	public List<EmployeeVo> getAllEmployees() {
-
 		return employeeDao.getAllEmployee();
 	}
 
@@ -43,6 +43,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 
    @Override
 	public String deleteEmployee(final int EmployeeId) {
+	   if(EmployeeId<=0) 
+	   {
+		   throw new CustomRequestException("employee id cant be null");
+	   }
 
 		return employeeDao.deleteEmployee(EmployeeId);
 
