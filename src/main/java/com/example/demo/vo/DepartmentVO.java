@@ -1,4 +1,4 @@
-package com.example.demo.VO;
+package com.example.demo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,14 +9,12 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 @NoArgsConstructor
 public class DepartmentVO {
-	@Getter
-	@Setter
+
 	private int departId;
-	
-	@Getter
-	@Setter
 	private String departName;
 	
 	

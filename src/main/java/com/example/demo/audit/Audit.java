@@ -8,11 +8,11 @@ import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Embeddable
 @Getter
 @Setter
 public class Audit {
+
 	@Column(name = "created_by")
 	private String createdBy;
 

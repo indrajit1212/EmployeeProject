@@ -3,32 +3,34 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.Dao.EmployeeDao;
-import com.example.demo.VO.EmployeeVo;
 import com.example.demo.aspect.LogExecutionTime;
-import com.example.demo.exceptions.CustomRequestException;
+import com.example.demo.dao.EmployeeDao;
+import com.example.demo.vo.EmployeeVo;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeDao employeeDao;
-	
-   @LogExecutionTime
-   @Override
+
+	@LogExecutionTime
+	@Override
 	public EmployeeVo creatEmployee(final EmployeeVo employeeVo) {
-       System.out.println("changing");
+
 		return employeeDao.insertEmployee(employeeVo);
 	}
 
-   @Override
+	@Override
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public List<EmployeeVo> getAllEmployees() {
+
 		return employeeDao.getAllEmployee();
 	}
 
-   @Override
+	@Override
 	public EmployeeVo updateEmployee(final EmployeeVo employeeVo) {
 
 		final EmployeeVo oldEmployee = employeeDao.getEmployeetbyId(employeeVo.getId());
@@ -41,15 +43,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return null;
 	}
 
-   @Override
+	@Override
+
 	public String deleteEmployee(final int EmployeeId) {
-	   if(EmployeeId<=0) 
-	   {
-		   throw new CustomRequestException("employee id cant be null");
-	   }
 
 		return employeeDao.deleteEmployee(EmployeeId);
 
+	}
+
+	@Override
+	public EmployeeVo getEmployeeById(final int id) {
+		return employeeDao.getEmployeetbyId(id);
 	}
 
 }

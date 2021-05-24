@@ -1,8 +1,8 @@
-package com.example.demo.Dao;
+package com.example.demo.dao;
 
 import java.util.List;
 
-import com.example.demo.VO.EmployeeVo;
+import com.example.demo.vo.EmployeeVo;
 
 
 
