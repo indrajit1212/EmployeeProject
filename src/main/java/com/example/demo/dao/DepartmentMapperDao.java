@@ -6,7 +6,7 @@ import com.example.demo.entity.Department;
 import com.example.demo.vo.DepartmentVO;
 
 @Mapper(componentModel = "spring")
-public interface DepartmentMapper {
+public interface DepartmentMapperDao {
 	DepartmentVO toVO(Department department);
 
 	Department toEntity(DepartmentVO departmentVO);

@@ -10,6 +10,7 @@ import com.example.demo.exceptions.CustomExceptionConstants;
 import com.example.demo.exceptions.CustomRequestException;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.vo.EmployeeVo;
+import com.example.mapper.EmployeeMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Autowired
 	private EmployeeMapperDao employeeMapperDao;
+
+	@Autowired
+	private EmployeeMapper employeeMapper;
 
 	@Override
 	public EmployeeVo insertEmployee(final EmployeeVo employeeVo) {
@@ -58,10 +62,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 		final Employee employee = employeeMapperDao.toEntity(employeeVo);
 		final Employee existingEmployee = employeeRepository.findById(Integer.valueOf(employee.getId())).orElse(null);
-		existingEmployee.setFirstName(employee.getFirstName());
-		existingEmployee.setLastName(employee.getLastName());
-		existingEmployee.setAddress(employee.getAddress());
-		final Employee saveEmployee = employeeRepository.save(employee);
+		final Employee employeec = employeeMapper.copyDtoToEntityExcludeNull(employeeVo, existingEmployee);
+		final Employee saveEmployee = employeeRepository.save(employeec);
 		return employeeMapperDao.toVo(saveEmployee);
 	}
 

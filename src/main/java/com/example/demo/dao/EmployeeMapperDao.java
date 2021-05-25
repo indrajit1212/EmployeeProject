@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import com.example.demo.entity.Employee;
 import com.example.demo.vo.EmployeeVo;
 
-@Mapper(componentModel = "spring", uses = DepartmentMapper.class)
+@Mapper(componentModel = "spring", uses = DepartmentMapperDao.class)
 public interface EmployeeMapperDao {
 	EmployeeVo toVo(Employee employee);
 
